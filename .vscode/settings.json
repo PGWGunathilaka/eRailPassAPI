@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "erailpass",
+        "mockingoose",
+        "Polgahawela",
+        "qrcode",
+        "relog",
+        "RSASSA",
+        "uuidv4",
+        "virtuals"
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

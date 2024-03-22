@@ -125,3 +125,7 @@ Temporary Items
 
 dist
 data
+.coverage/
+!src/seed/data
+qr_jwt_private.key
+qr_jwt_public.key

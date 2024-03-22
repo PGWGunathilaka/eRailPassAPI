@@ -1,22 +1,17 @@
-import { Document, Model, Schema, model } from "mongoose";
+import { Model, Schema, model } from "mongoose";
 
-export interface ITicketClass {
-}
-const ticketClassSchema = new Schema({
-});
 export interface ITicketZone {
-    minDistance:number;
-    maxDistance:number;
-    price:number;
-    ceilTo:number;
-    minPrice:number;
+    minDistance: number;
+    maxDistance: number;
+    pricePerKm: number;
 }
-const ticketZoneSchema = new Schema({
-    minDistance: {type: Schema.Types.Number, required:true},
-    maxDistance: {type: Schema.Types.Number, required:true},
-    price: {type: Schema.Types.Number, required:true},
-    ceilTo: {type: Schema.Types.Number, required:true},
-    minPrice: {type: Schema.Types.Number, required:true},
+
+type ITicketZoneModel = Model<ITicketZone>
+
+const ticketZoneSchema = new Schema<ITicketZone, ITicketZoneModel>({
+    minDistance: { type: Schema.Types.Number, required: true },
+    maxDistance: { type: Schema.Types.Number, required: true },
+    pricePerKm: { type: Schema.Types.Number, required: true },
 });
 
 
@@ -33,22 +28,49 @@ export enum SeasonType {
     SCHOOL,
 }
 export enum TClass {
-    FIRST,
-    SECOND,
-    THIRD,
+    FIRST = 1,
+    SECOND = 2,
+    THIRD = 3,
 }
-export interface ITicketPricing extends Document {
+export interface ITicketPricing {
     tType: TicketType;
     tZones: ITicketZone[];
-    seasonType?:SeasonType;
+    tClass: TClass
+    seasonType?: SeasonType;
+    minPrice: number
+    ceilTo: number
 }
-export interface ITicketPricingModel extends Model<ITicketPricing> { }
 
-const ticketPricingSchema = new Schema({
-    tType: {type: Schema.Types.String, enum:TicketType, required:true},
-    tZones: {type: [ticketZoneSchema], required:true},
-    tClass:{type:Schema.Types.Number,enum:TClass, required:true},
-    seasonType:{type: Schema.Types.String, enum:SeasonType, required:true},
+type ITicketPricingModel = Model<ITicketPricing>
+
+const ticketPricingSchema = new Schema<ITicketPricing, ITicketPricingModel>({
+    tType: {
+        type: Schema.Types.Number,
+        enum: TicketType,
+        required: true
+    },
+    tZones: {
+        type: [ticketZoneSchema],
+        required: true
+    },
+    tClass: {
+        type: Schema.Types.Number,
+        enum: TClass,
+        required: true
+    },
+    seasonType: {
+        type: Schema.Types.String,
+        enum: SeasonType,
+        required: false
+    },
+    minPrice: {
+        type: Schema.Types.Number,
+        required: true
+    },
+    ceilTo: {
+        type: Schema.Types.Number,
+        required: true
+    },
 });
 
-export const TicketPricing: ITicketPricingModel = model<ITicketPricing, ITicketPricingModel>('Station', ticketPricingSchema);
+export const TicketPricing: ITicketPricingModel = model<ITicketPricing, ITicketPricingModel>('TicketPricing', ticketPricingSchema);

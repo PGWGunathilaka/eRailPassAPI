@@ -1,10 +1,10 @@
-import mongoose, { ConnectionOptions } from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 import { logger } from './logger';
 
 // To use global promise for mongoose
 (<any>mongoose).Promise = global.Promise;
 
-/** Callback for establishing or re-stablishing mongo connection */
+/** Callback for establishing or re-establishing mongo connection */
 interface IOnConnectedCallback {
   (): void;
 }
@@ -31,10 +31,11 @@ export default class MongoConnection {
   private isConnectedBefore: boolean = false;
 
   /** Mongo connection options to be passed Mongoose */
-  private readonly mongoConnectionOptions: ConnectionOptions = {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
+  private readonly mongoConnectionOptions: ConnectOptions = {
+    // useNewUrlParser: true,
+    // useCreateIndex: true,
+    // useUnifiedTopology: true
+    
   };
 
   /**
@@ -55,13 +56,13 @@ export default class MongoConnection {
   }
 
   /** Close mongo connection */
-  public close(onClosed: (err: any) => void) {
+  public close(force: boolean) {
     logger.log({
       level: 'info',
       message: 'Closing the MongoDB connection'
     });
     // noinspection JSIgnoredPromiseFromCall
-    mongoose.connection.close(onClosed);
+    mongoose.connection.close(force);
   }
 
   /** Start mongo connection */

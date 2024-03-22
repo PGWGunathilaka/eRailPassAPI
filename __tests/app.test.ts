@@ -9,7 +9,7 @@ describe('App Test', () => {
       .expect(404, done);
   });
 
-  test('GET /book/all should return 401', done => {
+  test('GET /station/all should return 401', done => {
     request(app).get('/api/book/all').expect(401, done);
   });
 });

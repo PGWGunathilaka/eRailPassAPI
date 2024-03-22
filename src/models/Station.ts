@@ -1,35 +1,47 @@
-import { Document, Model, Schema, model } from "mongoose";
-
-export enum SLine {
-    MAIN_LINE,
-    MATALE_LINE,
-    PUTTALAM_LINE,
-    NORTHER_LINE,
-    BATTICOLOA_LINE,
-    COAST_LINE,
-    KV_LINE,
-    TRINCOMALEE_LINE,
-    TALAIMANNAR_LINE,
+import { Model, Schema, Types, model } from "mongoose";
+import { User } from "./User";
+/* spellchecker: disable */
+export enum TrainLine {
+    MAIN_LINE = 5,
+    MATALE_LINE = 7,
+    PUTTALAM_LINE = 10,
+    NORTHERN_LINE = 9,
+    BATTICOLOA_LINE = 1,
+    COASTAL_LINE = 2,
+    KV_LINE = 3,
+    TRINCOMALEE_LINE = 11,
+    TALAIMANNAR_LINE = 6,
 }
 
-export interface IStation extends Document {
-    sId:string;
+export interface IStation {
+    _id?: Types.ObjectId;
     sName: string;
-    sLine:SLine;
-    smId: string;
-    stationMasterName: string;
+    sLine: TrainLine;
+    sm?: string;
+    position: number
 }
 
-interface IStationModel extends Model<IStation> { }
+type IStationModel = Model<IStation>
 
-const schema = new Schema({
-    sId:{ type: Schema.Types.String, required: true },
-    sName: { type: Schema.Types.String, required: true },
-    sLine:{type: Schema.Types.String, enum:SLine, required:true},
-    smId: { type: Schema.Types.String, required: true },
-    stationMasterName: { type: Schema.Types.String, required: true },
-  name: { type: Schema.Types.String, required: true },
-  author: { type: Schema.Types.String, required: true }
+const schema = new Schema<IStation, IStationModel>({
+    sName: {
+        type: Schema.Types.String,
+        required: true
+    },
+    sLine: {
+        type: Schema.Types.Number,
+        enum: TrainLine,
+        required: true
+    },
+    sm: {
+        type: Schema.Types.ObjectId,
+        ref: User.modelName,
+        required: false
+    },
+    position: {
+        type: Schema.Types.Number,
+        required: true
+    },
 });
 
 export const Station: IStationModel = model<IStation, IStationModel>('Station', schema);

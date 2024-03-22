@@ -1,110 +1,59 @@
 {
-  "parser": "@typescript-eslint/parser",
+  "env": {
+      "es2021": true,
+      "node": true
+  },
+  "extends": "standard-with-typescript",
+  "overrides": [],
   "parserOptions": {
-    "jsx": true,
-    "useJSXTextNode": true,
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "modules": true
-    }
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "project": [
+          "tsconfig.json"
+      ]
   },
   "rules": {
-    "linebreak-style": 0,
-    "max-len": 0,
-    "import/extensions": [
-      0,
-      "never",
-      {
-        "ignorePackages": true
-      }
-    ],
-    "spaced-comment": [
-      "error",
-      "always"
-    ],
-    "eqeqeq": [
-      "error",
-      "always",
-      {
-        "null": "ignore"
-      }
-    ],
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": [
-          "_id"
-        ]
-      }
-    ],
-    "camelcase": [
-      "error",
-      {
-        "allow": [
-          "oauth2_v2",
-          "user_id"
-        ],
-        "properties": "never"
-      }
-    ],
-    "func-names": [
-      "error",
-      "never"
-    ],
-    "arrow-parens": [
-      "error",
-      "as-needed"
-    ],
-    "semi": "error",
-    "no-extra-semi": 0,
-    "import/no-unresolved": "off",
-    "import/prefer-default-export": 0,
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "**/*.test.ts",
-          "**/*.spec.ts"
-        ]
-      }
-    ],
-    "no-unused-vars": "off",
-    "dot-notation": "off",
-    "class-methods-use-this": "off",
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "never",
-        "objects": "never",
-        "imports": "never",
-        "exports": "never",
-        "functions": "ignore"
-      }
-    ],
-    "handle-callback-err": "error",
-    "quotes": [
-      "error",
-      "single"
-    ]
-  },
-  "overrides": [
-    {
-      "files": [
-        "**/*.ts"
+      "@typescript-eslint/semi": 0,
+      "@typescript-eslint/quotes": "off",
+      "@typescript-eslint/object-curly-spacing": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "no-multiple-empty-lines": [
+          2,
+          {
+              "max": 2
+          }
       ],
-      "parser": "@typescript-eslint/parser",
-      "rules": {
-        "no-undef": "off"
-      }
-    }
-  ],
-  "extends": [
-    "eslint:recommended",
-    "airbnb-base"
-  ],
+      "@typescript-eslint/indent": "off",
+      "@typescript-eslint/comma-dangle": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/space-before-function-paren": "off",
+      "@typescript-eslint/restrict-template-expressions": [
+          "warn",
+          {
+              "allowAny": true,
+              "allowBoolean": true,
+              "allowNullish": true,
+              "allowNumber": true,
+              "allowRegExp": true
+          }
+      ],
+      "@typescript-eslint/member-delimiter-style": "off",
+      "yoda": "off",
+      "@typescript-eslint/no-extraneous-class": "off",
+      "object-shorthand": "off",
+      "@typescript-eslint/consistent-type-imports": "off",
+      "import/first": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/triple-slash-reference": "off",
+      "@typescript-eslint/no-misused-promises":"off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "padded-blocks": "off",
+      "multiline-ternary": ["error", "always-multiline"],
+      "@typescript-eslint/array-type": "off"
+  },
   "plugins": [
-    "@typescript-eslint"
-  ],
-  "settings": {}
+      "only-warn"
+  ]
 }
