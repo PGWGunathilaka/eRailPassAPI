@@ -9,4 +9,5 @@ export function paymentRoutes(router: Router): void {
 
     // AUTH ROUTES
     router.post('/auth/payment/payment-sheet', PaymentController.paymentSheet);
+    router.post('/auth/payment/calculate-payment', PaymentController.calculatePayment);
 }

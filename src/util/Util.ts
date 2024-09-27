@@ -37,12 +37,14 @@ export class Util {
             tClass: ticket.tClass,
             isPaid: ticket.isPaid,
             noOfTickets: ticket.noOfTickets,
+            price: ticket.price,
         }
         const privateKey = this.qrJwtPrivateKey()
         const signOptions: SignOptions = {
             issuer: 'eRailPass',
             expiresIn: "365d",
-            algorithm: "RS256" // RSASSA [ "RS256", "RS384", "RS512" ]
+            algorithm: "RS256", // RSASSA [ "RS256", "RS384", "RS512" ]
+            allowInsecureKeySizes:true
         };
         const token = jwt.sign(payload, privateKey, signOptions);
         // console.log("Token :" + token);

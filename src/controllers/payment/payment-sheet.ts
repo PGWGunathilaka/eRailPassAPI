@@ -26,7 +26,7 @@ const addWrapper: RequestHandler = async (req, res) => {
   const price = TicketPricingHandler.calculateNormalPricing(prices, distance, data.tClass)
 
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: Math.max(160, price) * 100,
+    amount: Math.max(160, price*parseInt(data.noOfTickets as any)) * 100,
     currency: 'lkr',
     customer: customer.id,
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter

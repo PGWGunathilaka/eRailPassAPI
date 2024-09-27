@@ -5,3 +5,5 @@ export { details } from './details';
 export { deleteOne } from './delete'
 export { userTickets } from './user-tickets'
 export { print } from './print'
+export { markPaid } from './mark-paid'
+export { markChecked } from './mark-checked'

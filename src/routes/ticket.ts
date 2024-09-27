@@ -11,7 +11,10 @@ export function ticketRoutes(router: Router): void {
     // Ticket history
 
     // CHECKER ROUTES
-    router.post('/checker/ticket/update', TicketController.update);
+    router.post('/checker/ticket/mark-checked', TicketController.markChecked);
+
+    // SM ROUTES
+    router.post('/sm/ticket/mark-paid', TicketController.markPaid);
 
     // ADMIN ROUTES
     router.get('/admin/ticket/all', TicketController.all);
